@@ -142,7 +142,7 @@ export function Toolbar({
           >
             <span className="tooltiptext">Chill Guy</span>
             <img
-              src={`${process.env.NEXT_PUBLIC_APP_URL}/chillguy.png`}
+              src="https://s.sprunkiincredibox.games/image/chillguy.png"
               className="size-6"
             />
           </Button>

@@ -299,7 +299,7 @@ export function useFabric() {
   async function addChillGuy() {
     if (!canvas) return
 
-    const imageUrl = `${process.env.NEXT_PUBLIC_APP_URL}/chillguy.png`
+    const imageUrl = "https://s.sprunkiincredibox.games/image/chillguy.png"
     const img = await FabricImage.fromURL(imageUrl)
 
     if (!img) {
