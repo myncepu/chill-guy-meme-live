@@ -4,7 +4,7 @@ import React from "react"
 import { Button } from "@/components/ui/button"
 import { Icons } from "./icons"
 import { type Accept, useDropzone } from "react-dropzone"
-import { Canvas } from "fabric"
+import type { Canvas } from "fabric"
 import {
   Popover,
   PopoverContent,
@@ -25,8 +25,9 @@ import { otherFonts, recommendedFonts } from "@/lib/constants"
 import { CheckIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import {
-  DrawingPropertiesProps,
-  selectedTextPropertiesProps,
+  type DrawingPropertiesProps,
+  type selectedTextPropertiesProps,
+  useFabric,
 } from "@/hooks/use-fabric"
 import { AnimatePresence, motion } from "framer-motion"
 
@@ -50,25 +51,28 @@ interface ToolbarProps {
   drawingSettings: DrawingPropertiesProps
 }
 
-export function Toolbar({
-  setBackgroundImage,
-  addText,
-  changeFontFamily,
-  changeTextColor,
-  addChillGuy,
-  flipImage,
-  deleteSelectedObject,
-  downloadCanvas,
-  changeBackgroundColor,
-  currentBackgroundColor,
-  selectedTextProperties,
-  toggleFilter,
-  isImageSelected,
-  toggleDrawingMode,
-  incrementBrushSize,
-  setBrushColor,
-  drawingSettings,
-}: ToolbarProps) {
+export function Toolbar() {
+  const {
+    canvasRef,
+    setBackgroundImage,
+    addText,
+    addChillGuy,
+    changeFontFamily,
+    changeTextColor,
+    flipImage,
+    deleteSelectedObject,
+    downloadCanvas,
+    changeBackgroundColor,
+    currentBackgroundColor,
+    selectedTextProperties,
+    toggleFilter,
+    isImageSelected,
+    toggleDrawingMode,
+    incrementBrushSize,
+    setBrushColor,
+    drawingSettings,
+  } = useFabric()
+
   const onDrop = React.useCallback(
     (acceptedFiles: File[]) => {
       if (acceptedFiles.length > 0) {
@@ -95,6 +99,10 @@ export function Toolbar({
 
   return (
     <div className="max-w-[100vw] px-5">
+        <canvas
+          ref={canvasRef}
+          className="border rounded-3xl overflow-hidden "
+        />
       <div className="no-scrollbar w-full overflow-x-auto rounded-full border bg-white sm:overflow-visible">
         <div className="flex items-center space-x-2 p-2 text-2xl md:justify-center">
           <Button
@@ -132,7 +140,7 @@ export function Toolbar({
             </PopoverContent>
           </Popover>
           <div className="h-5">
-            <div className="mx-1.5 h-full w-px bg-[#e5e5e5]"></div>
+            <div className="mx-1.5 h-full w-px bg-[#e5e5e5]" />
           </div>
           <Button
             onClick={addChillGuy}
@@ -144,6 +152,7 @@ export function Toolbar({
             <img
               src="https://s.sprunkiincredibox.games/image/chillguy.png"
               className="size-6"
+              alt="Chill Guy"
             />
           </Button>
           <AnimatePresence>
@@ -182,7 +191,7 @@ export function Toolbar({
             )}
           </AnimatePresence>
           <div className="h-5">
-            <div className="mx-1.5 h-full w-px bg-[#e5e5e5]"></div>
+            <div className="mx-1.5 h-full w-px bg-[#e5e5e5]" />
           </div>
           <Button
             onClick={addText}
@@ -325,7 +334,7 @@ export function Toolbar({
             )}
           </AnimatePresence>
           <div className="h-5">
-            <div className="mx-1.5 h-full w-px bg-[#e5e5e5]"></div>
+            <div className="mx-1.5 h-full w-px bg-[#e5e5e5]" />
           </div>
           <Button
             onClick={toggleDrawingMode}
@@ -391,7 +400,7 @@ export function Toolbar({
             )}
           </AnimatePresence>
           <div className="h-5">
-            <div className="mx-1.5 h-full w-px bg-[#e5e5e5]"></div>
+            <div className="mx-1.5 h-full w-px bg-[#e5e5e5]" />
           </div>
           <Button
             onClick={deleteSelectedObject}
@@ -403,7 +412,7 @@ export function Toolbar({
             <Icons.trash className="size-4 text-red-600" />
           </Button>
           <div className="h-5">
-            <div className="mx-1.5 h-full w-px bg-[#e5e5e5]"></div>
+            <div className="mx-1.5 h-full w-px bg-[#e5e5e5]" />
           </div>
           <Button
             onClick={downloadCanvas}
@@ -416,7 +425,7 @@ export function Toolbar({
           </Button>
           {isMobile && (
             <div className="h-5 invisible">
-              <div className="h-full w-px bg-[#e5e5e5]"></div>
+              <div className="h-full w-px bg-[#e5e5e5]" />
             </div>
           )}
         </div>

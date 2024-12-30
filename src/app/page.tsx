@@ -1,70 +1,36 @@
-"use client"
-
 import { Toolbar } from "@/components/toolbar"
-import { useFabric } from "@/hooks/use-fabric"
 import "@/app/fonts.css"
 
+export async function generateMetadata() {
+  return {
+    title: "Chill Guy Meme Generator",
+    description: "The most powerful and user-friendly Chill Guy Meme generator - create, customize, and share your memes in seconds.",
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_WEB_URL}`,
+    },
+  };
+}
+
 export default function HomePage() {
-  const {
-    canvasRef,
-    setBackgroundImage,
-    addText,
-    addChillGuy,
-    changeFontFamily,
-    changeTextColor,
-    flipImage,
-    deleteSelectedObject,
-    downloadCanvas,
-    changeBackgroundColor,
-    currentBackgroundColor,
-    selectedTextProperties,
-    toggleFilter,
-    isImageSelected,
-    toggleDrawingMode,
-    incrementBrushSize,
-    setBrushColor,
-    drawingSettings,
-  } = useFabric()
 
   return (
     <>
       <div className="px-2 space-y-10 min-h-screen items-center h-full flex-col flex justify-between">
-        <div></div>
-        <canvas
-          ref={canvasRef}
-          className="border rounded-3xl overflow-hidden "
-        />
         <div className="pt-10 pb-8 space-y-5 flex items-center flex-col">
-          <Toolbar
-            setBackgroundImage={setBackgroundImage}
-            addText={addText}
-            addChillGuy={addChillGuy}
-            changeFontFamily={changeFontFamily}
-            changeTextColor={changeTextColor}
-            flipImage={flipImage}
-            deleteSelectedObject={deleteSelectedObject}
-            downloadCanvas={downloadCanvas}
-            changeBackgroundColor={changeBackgroundColor}
-            currentBackgroundColor={currentBackgroundColor}
-            selectedTextProperties={selectedTextProperties}
-            toggleFilter={toggleFilter}
-            isImageSelected={isImageSelected}
-            toggleDrawingMode={toggleDrawingMode}
-            drawingSettings={drawingSettings}
-            incrementBrushSize={incrementBrushSize}
-            setBrushColor={setBrushColor}
-          />
+          <Toolbar />
           <div className="flex flex-col justify-center text-center items-center text-sm md:flex-row">
             <a
               className="text-balance leading-loose text-muted-foreground  font-medium hover:text-blue-700"
               href="https://x.com/intent/follow?screen_name=sujjeeee"
               target="_blank"
+              rel="noopener noreferrer"
             >
               Built by Sujjeee
             </a>
           </div>
           <div className="max-w-3xl mx-auto space-y-12 text-center">
             <section className="space-y-6">
+              <h1 className="text-4xl font-bold">Chill Guy Meme Generator</h1>
               <h2 className="text-3xl font-bold">Create Your Perfect Chill Guy Meme</h2>
               <p className="text-xl text-muted-foreground">The most powerful and user-friendly Chill Guy Meme generator - create, customize, and share your memes in seconds.</p>
               <div className="grid gap-6 text-left">
